@@ -39,6 +39,9 @@ CloudFormation do
     end
   end
 
-  Output('FileSystem', Ref('FileSystem'))
+  Output(:FileSystem) {
+    Value(Ref('FileSystem'))
+    Export FnSub("${EnvironmentName}-#{external_parameters[:component_name]}-FileSystem")
+  }
 
 end
